@@ -58,9 +58,15 @@ class AuthController {
             const phone = req.body.phone
             const password = req.body.password
 
-            if (!phone || !password) {
+            if (!phone) {
                 res.json({
-                    errorMessage: 'Cần nhập cả SĐT và mật khẩu'
+                    errorMessage: 'Cần nhập Số điện thoại'
+                })
+            }
+
+            if(!password) {
+                res.json({
+                    errorMessage: 'Cần nhập mật khẩu'
                 })
             }
 

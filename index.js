@@ -23,16 +23,16 @@ const userRoutes = require('./Routes/user.route')
 const authMiddleware = require('./Middleware/auth.middleware')
 
 const app = express()
-const PORT = 5000
+const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 
-app.use('/api/user', authRoutes)
-app.use('/api/address', authMiddleware, addressRoutes)
-app.use('/api/get_info_app', authMiddleware, appInfoRoutes)
-app.use('/api/currency_price', currencyRoutes)
-app.use('/api/faq', faqRoutes)
-app.use('/api', authMiddleware, userRoutes)
+app.use('/auth', authRoutes)
+app.use('/address', authMiddleware, addressRoutes)
+app.use('/get_info_app', authMiddleware, appInfoRoutes)
+app.use('/currency_price', currencyRoutes)
+app.use('/faq', faqRoutes)
+app.use('/', authMiddleware, userRoutes)
 
 // FAQCategory.hasMany(FAQ, {
 //     foreignKey: 'id'
